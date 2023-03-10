@@ -52,7 +52,7 @@ public class Ventana extends JFrame implements ActionListener {
         btnPanel2 = new JButton("PANEL2");
         btnPanel2.setBounds(109, 76, 89, 23);
         btnPanel2.addActionListener(this);
-        
+
         cargarComponentesPanel1();
         cargarComponentesPanel2();
 
@@ -81,6 +81,7 @@ public class Ventana extends JFrame implements ActionListener {
         btnPanelInterno = new JButton();
         btnPanelInterno.setText("enviar");
         btnPanelInterno.setBounds(200, 10, 90, 25);
+        btnPanelInterno.addActionListener(this);
 
         campo = new JTextField();
         campo.setBounds(10, 10, 160, 25);
@@ -99,6 +100,10 @@ public class Ventana extends JFrame implements ActionListener {
         if(e.getSource()==btnPanel2){
             panel1.setVisible(false);
             panel2.setVisible(true);
+        }
+
+        if(e.getSource()==btnPanelInterno){
+            JOptionPane.showMessageDialog(null, "as ingresado " + campo.getText());
         }
     }
 }
