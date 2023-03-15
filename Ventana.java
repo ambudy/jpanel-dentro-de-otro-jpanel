@@ -12,10 +12,12 @@ import java.awt.event.*;
 public class Ventana extends JFrame implements ActionListener {
 
     private JLabel lblTitulo;
-    private JButton btnPanel1, btnPanel2, btnPanelInterno;
-    private JTextArea textArea;
-    private JPanel panel1, panel2;
-    private JTextField campo;
+    private JButton btnPanel1, btnPanel2;
+
+    //instacias de los panel1 y panel2
+    Panel1 miPanel1;
+    Panel2 miPanel2;
+    JScrollPane scrollPaneles;
 
     public Ventana(){
         setTitle("PRUEBA");
@@ -28,22 +30,16 @@ public class Ventana extends JFrame implements ActionListener {
     }
 
     private void iniciarComponentes(){
-        panel1 = new JPanel();
-        panel1.setBackground(Color.CYAN);
-        panel1.setBounds(5, 112, 370, 200);
-        panel1.setLayout(null);
-        panel1.setVisible(true);
 
+        miPanel1 = new Panel1();
+        miPanel2 = new Panel2();
 
-        panel2 = new JPanel();
-        panel2.setBackground(Color.GREEN);
-        panel2.setBounds(5, 112, 370, 200);
-        panel2.setLayout(null);
-        panel2.setVisible(false);
+        scrollPaneles = new JScrollPane();
+        scrollPaneles.setBounds(5, 112, 400, 400);
 
-        lblTitulo = new  JLabel("EJEMPLO jPANEL");
+        lblTitulo = new  JLabel("Jpaneles en clases diferentes");
         lblTitulo.setFont(new Font("arial", Font.PLAIN, 30));
-        lblTitulo.setBounds(10, 14, 221, 51);
+        lblTitulo.setBounds(10, 14, 400, 51);
 
         btnPanel1 = new JButton("PANEL1");
         btnPanel1.setBounds(10, 76, 89, 23);
@@ -53,57 +49,31 @@ public class Ventana extends JFrame implements ActionListener {
         btnPanel2.setBounds(109, 76, 89, 23);
         btnPanel2.addActionListener(this);
 
-        cargarComponentesPanel1();
-        cargarComponentesPanel2();
-
-                        add(btnPanel2);
                         add(btnPanel1);
+                        add(btnPanel2);
+
                         add(lblTitulo);
 
-                        add(panel1);
-                        add(panel2);
-    }
-
-    private void cargarComponentesPanel1(){
-        textArea = new JTextArea();
-        textArea.setBounds(10, 10, 350, 181);
-        String texto=   "este es un ejemplo sobre como interactua una ventana con"
-                        +"\nvarios jpanel\n"
-                        +"\nla logica se basa en tener cada panel con sus propios"
-                        +"\nconponentes\n"
-                        +"\n y ocultar u hacer visible uno de ellos\n"
-                        +"\n dependiendo de la necesidad\n";
-                        textArea.setText(texto);
-                        panel1.add(textArea);
-    }
-
-    private void cargarComponentesPanel2(){
-        btnPanelInterno = new JButton();
-        btnPanelInterno.setText("enviar");
-        btnPanelInterno.setBounds(200, 10, 90, 25);
-        btnPanelInterno.addActionListener(this);
-
-        campo = new JTextField();
-        campo.setBounds(10, 10, 160, 25);
-
-        panel2.add(btnPanelInterno);
-        panel2.add(campo);
+                        add(scrollPaneles);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btnPanel1){
-            panel1.setVisible(true);
-            panel2.setVisible(false);
+            definirPanel(miPanel1);
         }
 
         if(e.getSource()==btnPanel2){
-            panel1.setVisible(false);
-            panel2.setVisible(true);
-        }
-
-        if(e.getSource()==btnPanelInterno){
-            JOptionPane.showMessageDialog(null, "as ingresado " + campo.getText());
+            definirPanel(miPanel2);
         }
     }
+
+    private void definirPanel(Panel1 miPanel){
+        scrollPaneles.setViewportView(miPanel);
+    }
+
+    private void definirPanel(Panel2 miPanel){
+        scrollPaneles.setViewportView(miPanel);
+    }
 }
+
