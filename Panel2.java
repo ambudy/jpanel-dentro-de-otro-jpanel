@@ -16,7 +16,7 @@ import java.awt.event.*;
 public class Panel2  extends JPanel implements ActionListener {
 
     private JTextField campo;
-    JButton btnPanelInterno;
+    private JButton btnPanelInterno;
 
     public Panel2(){
         setLayout(null);
