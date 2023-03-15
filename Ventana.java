@@ -64,6 +64,7 @@ public class Ventana extends JFrame implements ActionListener {
         }
 
         if(e.getSource()==btnPanel2){
+            miPanel2.limpiar();
             definirPanel(miPanel2);
         }
     }
@@ -75,5 +76,7 @@ public class Ventana extends JFrame implements ActionListener {
     private void definirPanel(Panel2 miPanel){
         scrollPaneles.setViewportView(miPanel);
     }
+
+
 }
 

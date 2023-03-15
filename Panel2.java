@@ -13,9 +13,9 @@ import java.awt.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 
-public class Panel2  extends JPanel {
+public class Panel2  extends JPanel implements ActionListener {
 
-    JTextField campo;
+    private JTextField campo;
     JButton btnPanelInterno;
 
     public Panel2(){
@@ -28,6 +28,7 @@ public class Panel2  extends JPanel {
         btnPanelInterno = new JButton();
         btnPanelInterno.setText("enviar");
         btnPanelInterno.setBounds(200, 10, 90, 25);
+        btnPanelInterno.addActionListener(this);
 
         campo = new JTextField();
         campo.setBounds(10, 10, 160, 25);
@@ -35,5 +36,18 @@ public class Panel2  extends JPanel {
         add(btnPanelInterno);
         add(campo);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==btnPanelInterno){
+            JOptionPane.showMessageDialog(null, "lo que el usuario ingreso es: " + campo.getText());
+        }
+    }
+
+    public void limpiar(){
+        campo.setText("");
+    }
+
+
 }
 
